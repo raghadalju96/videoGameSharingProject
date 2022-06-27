@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { elementAt } from 'rxjs';
+
 
 interface Imodal {
   id: string;
@@ -10,7 +10,7 @@ interface Imodal {
   providedIn: 'root',
 })
 export class ModalService {
-  public modals: Imodal[] = [];
+  private modals: Imodal[] = [];
   constructor() {}
 
   // private raghad ={
@@ -26,10 +26,9 @@ export class ModalService {
     console.log(this.modals);
   }
 
-  unregisterModal(id:string){
-    this.modals =this.modals.filter(element => element.id != id);
+  unregisterModal(id: string) {
+    this.modals = this.modals.filter((element) => element.id != id);
     console.log(this.modals);
-  
   }
 
   isModalOpen(id: string) {
@@ -40,8 +39,6 @@ export class ModalService {
   }
 
   toggleModal(id: string) {
-    console.log('raghad');
-
     const modal = this.modals.find((element) => element.id === id);
 
     if (modal) {

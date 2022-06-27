@@ -4,21 +4,15 @@ import { ModalService } from '../services/modal.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
+  constructor(public modalService: ModalService) {}
 
-  constructor(public modalService:ModalService) {
+  ngOnInit(): void {}
 
-   
-   }
-
-  ngOnInit(): void {
-  }
-
-  openModal(event:Event){
-    event.preventDefault()
+  openModal(event: Event) {
+    event.preventDefault();
     return this.modalService.toggleModal('auth');
   }
-
 }

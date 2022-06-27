@@ -8,11 +8,11 @@ import { ModalService } from './services/modal.service';
 })
 export class AppComponent {
   title = 'Clips';
-  authClose = true;
+  // authClose = true;
 
-  changes(){
-  this.authClose = !this.authClose
+  // changes(){
+  // this.authClose = !this.authClose
    
   
-  }
+  // }
 }
