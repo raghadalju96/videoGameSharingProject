@@ -4,16 +4,22 @@ import { AbstractControl, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.css']
+  styleUrls: ['./input.component.css'],
 })
 export class InputComponent implements OnInit {
+  @Input() control: FormControl = new FormControl();
+  @Input() type: string = 'text';
+  @Input() placeholder: string = '';
 
-  @Input() control : FormControl = new FormControl()
-  @Input() type :string = 'text'
-  @Input() placeholder:string = ''
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
+    console.log(this.control.errors?.min);
   }
 
+  ngOnInit(): void {
+    console.log(this.control.errors);
+  }
+
+  ngOnChanges() {
+    console.log(this.control.errors?.min);
+  }
 }
