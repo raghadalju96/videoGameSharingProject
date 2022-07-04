@@ -6,7 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnChanges{
+export class RegisterComponent  {
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required,
     Validators.minLength(3)]),
@@ -25,7 +25,11 @@ export class RegisterComponent implements OnChanges{
     confirmPassword: new FormControl('',[
       Validators.required
     ]),
-    phoneNumber: new FormControl(''),
+    phoneNumber: new FormControl('',[
+      Validators.required,
+      Validators.minLength(13),
+      Validators.maxLength(13)
+    ]),
   });
 
 
@@ -35,12 +39,10 @@ export class RegisterComponent implements OnChanges{
     console.log(this.registerForm.controls.age.errors?.min);
   }
 
-  ngOnChanges()	{
-  //  console.log(this.registerForm.controls.age.errors?.min);
-
-
+  register(){
+    console.log('register called');
+    
   }
-
  
   
 }
