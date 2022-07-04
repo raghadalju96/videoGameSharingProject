@@ -16,7 +16,7 @@ export class InputComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.control.errors);
+    console.log(this.control.errors?.min);
   }
 
   ngOnChanges() {

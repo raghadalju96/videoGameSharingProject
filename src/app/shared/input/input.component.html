@@ -1,15 +1,13 @@
 <input
-  type="text"
+  [type]=type
   [formControl]="control"
   class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-  placeholder="Enter Name"
+  [placeholder]=placeholder
 />
 <ng-container *ngIf="control.touched && control.dirty">
   <p
     class="text-red-400"
     *ngIf="control.errors?.required"
-    type="type"
-    placeholder="placeholder"
   >
     Field is required
   </p>
@@ -20,8 +18,12 @@
   <p class="text-red-400" *ngIf="control.errors?.email">
     You must enterd valid email
   </p>
-  <p class="text-red-400" *ngIf="control.errors?.min || control.errors?.max">
-    Age must be between 18 and 120
+  <p class="text-red-400" *ngIf="control.errors?.min">
+    Age must not be yonger than {{control.errors?.min.min}} 
+  </p>
+
+  <p class="text-red-400" *ngIf="control.errors?.max">
+    Age must not be older than {{control.errors?.max.max}}
   </p>
   <p class="text-red-400" *ngIf="control.errors?.pattern">
     Enter Valid password
