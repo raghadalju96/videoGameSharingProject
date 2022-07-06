@@ -7,6 +7,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent  {
+
+  showAlert:boolean= false
+  alertMsg :string = 'You have registed successfully'
+  alertColor:string = 'blue'
+
+
+
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required,
     Validators.minLength(3)]),
@@ -40,8 +47,9 @@ export class RegisterComponent  {
   }
 
   register(){
-    console.log('register called');
-    
+    this.showAlert = true
+    this.alertMsg = 'You have registed successfully'
+    this.alertColor = 'blue'
   }
  
   

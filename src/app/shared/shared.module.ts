@@ -27,7 +27,8 @@ import { AlertComponent } from './alert/alert.component';
     ModalComponent,
     TabsContainerComponent,
     TabComponent,
-    InputComponent
+    InputComponent,
+    AlertComponent
   ]
 })
 export class SharedModule { }
