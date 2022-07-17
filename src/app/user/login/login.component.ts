@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  showAlert:boolean = false
+  alertColor:string = 'blue'
+  alertMsg:string = 'you have loged successfully'
+
 
   credentials = {
     email :'',
@@ -15,6 +19,15 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  login(){
+
+    this.showAlert = true
+    this.alertColor = 'blue'
+    this.alertMsg = 'you have loged successfully'
+    console.log("login successuflly");
+    
   }
 
 }
