@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from 'src/app/services/auth.service';
+import IUser from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +20,7 @@ export class RegisterComponent {
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    age: new FormControl('', [
+    age: new FormControl<number |null>(null, [
       Validators.required,
       Validators.min(18),
       Validators.max(120),
@@ -37,11 +39,7 @@ export class RegisterComponent {
     ]),
   });
 
-  constructor(
-    private auth: AngularFireAuth,
-    private db: AngularFirestoreModule,
-    private db2: AngularFirestore
-  ) {
+  constructor(private auth: AuthService) {
     console.log(this.registerForm.controls.age.errors?.min);
   }
 
@@ -50,20 +48,7 @@ export class RegisterComponent {
     this.alertMsg = 'You have registed successfully';
     this.alertColor = 'blue';
 
-    try {
-      const { email, password } = this.registerForm.value;
-      const userCard = await this.auth.createUserWithEmailAndPassword(
-        email as string,
-        password as string
-      );
-      console.log(this.registerForm.controls.name);
-
-     await this.db2.collection('users').add({
-        name: this.registerForm.controls.name.value,
-        email: this.registerForm.controls.email.value,
-        age: this.registerForm.controls.age.value,
-        phoneNumber: this.registerForm.controls.phoneNumber.value,
-      });
+    try { this.auth.createUser(this.registerForm.value as IUser)
     } catch (e) {
       console.error(e);
       this.alertMsg = 'unexpected error occurred. please try again';
