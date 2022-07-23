@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import IUser from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private usersCollection!: AngularFirestoreCollection<IUser>;
+  
   constructor(private auth: AngularFireAuth, private db: AngularFirestore) {}
 
   public async createUser(userData: IUser) {
@@ -19,7 +21,7 @@ export class AuthService {
       throw new Error('password not provided');
     }
 
-    await this.db.collection<IUser>('users').add({
+    await this.usersCollection.add({
       name: userData.name,
       email: userData.email,
       age: userData.age,
