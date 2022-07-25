@@ -2,14 +2,24 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import IUser from '../models/user.model';
+import {map, Observable} from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private usersCollection!: AngularFirestoreCollection<IUser>;
+  private usersCollection: AngularFirestoreCollection<IUser>;
+  public isAuthenticated$: Observable<Boolean>
   
-  constructor(private auth: AngularFireAuth, private db: AngularFirestore) {}
+  constructor(private auth: AngularFireAuth, private db: AngularFirestore){
+    this.usersCollection = db.collection('users')
+    this.isAuthenticated$ = auth.user.pipe(
+      map(user => !!user)
+    )
+    auth.user.subscribe(console.log)
+    
+  }
+
 
   public async createUser(userData: IUser) {
     const userCard = await this.auth.createUserWithEmailAndPassword(
@@ -21,7 +31,11 @@ export class AuthService {
       throw new Error('password not provided');
     }
 
-    await this.usersCollection.add({
+    if(!userCard.user){
+      throw new Error ('User can not be found')
+    }
+
+    await this.usersCollection.doc(userCard.user?.uid).set({
       name: userData.name,
       email: userData.email,
       age: userData.age,
