@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
 import { ModalService } from './services/modal.service';
 
 @Component({
@@ -8,11 +9,7 @@ import { ModalService } from './services/modal.service';
 })
 export class AppComponent {
   title = 'Clips';
-  // authClose = true;
+constructor(public auth: AuthService){
 
-  // changes(){
-  // this.authClose = !this.authClose
-   
-  
-  // }
+}
 }

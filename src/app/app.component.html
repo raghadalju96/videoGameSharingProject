@@ -3,6 +3,7 @@
 
   <!-- Intro Section -->
   <section class="relative overflow-hidden mb-2"> 
+    
     <!-- The video -->
     <video autoplay muted loop class="w-full h-full object-cover absolute z-0">
       <source src="assets/video/hero.webm" type="video/webm">
@@ -248,8 +249,10 @@
       </a>
     </div>
 
-    <app-auth-modal ></app-auth-modal>
+    <app-auth-modal *ngIf="!(auth.isAuthenticatedWithDelay$ | async)"></app-auth-modal>
   </section>
+
+ 
 
  
   
