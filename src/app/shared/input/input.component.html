@@ -29,4 +29,11 @@
   <p class="text-red-400" *ngIf="control.errors?.pattern">
     Enter Valid password
   </p>
+
+  <p class="text-red-400" *ngIf="control.errors?.noMatch">
+    Password do not match
+  </p>
+  <p class="text-red-400" *ngIf="control.errors?.emailTaken">
+    Email taken. Please try another email
+  </p>
 </ng-container>
