@@ -6,6 +6,7 @@
 /out-tsc
 /bazel-out
 
+
 # Node
 /node_modules
 npm-debug.log
@@ -44,3 +45,4 @@ Thumbs.db
 
 #
 importantAngularNotes.md
+/src/app/personal

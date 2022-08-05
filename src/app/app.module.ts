@@ -10,14 +10,18 @@ import { environment } from 'src/environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth'
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
-
-
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    HomeComponent,
+    AboutComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -27,6 +31,7 @@ import { Firestore, collectionData, collection } from '@angular/fire/firestore';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AppRoutingModule,
     
   
   ],

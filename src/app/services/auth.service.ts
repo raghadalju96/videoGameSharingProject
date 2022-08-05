@@ -45,5 +45,10 @@ export class AuthService {
       age: userData.age,
       phoneNumber: userData.phoneNumber,
     });
+
+
+    await userCard.user.updateProfile({
+      displayName:userData.name
+    })
   }
 }
