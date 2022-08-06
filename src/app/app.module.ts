@@ -13,6 +13,7 @@ import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { VideoModule } from './video/video.module';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AboutComponent } from './about/about.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AppRoutingModule,
+    VideoModule
     
   
   ],
