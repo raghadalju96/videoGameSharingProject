@@ -32,11 +32,9 @@ export class AuthService {
     switchMap(route => route?.data ?? of({}))
    ).subscribe(data => {
     this.redirect = data.authOnly ?? false
-   });
-   
-   
-   
-  }
+    console.log(this.redirect);
+    
+   })}
 
 
   public async createUser(userData: IUser) {
