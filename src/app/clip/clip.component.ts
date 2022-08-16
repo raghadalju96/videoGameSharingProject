@@ -7,7 +7,6 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./clip.component.css']
 })
 export class ClipComponent implements OnInit {
-
  id = ''  
   constructor(private route: ActivatedRoute) { }
 
