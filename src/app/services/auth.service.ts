@@ -52,7 +52,7 @@ export class AuthService {
     }
 
     await this.usersCollection.doc(userCard.user?.uid).set({
-      name: userData.name,
+      displayName: userData.displayName,
       email: userData.email,
       age: userData.age,
       phoneNumber: userData.phoneNumber,
@@ -60,7 +60,7 @@ export class AuthService {
 
 
     await userCard.user.updateProfile({
-      displayName:userData.name
+      displayName:userData.displayName
     })
   }
 
