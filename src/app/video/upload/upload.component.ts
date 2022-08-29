@@ -1,6 +1,9 @@
-import { Component, OnDestroy} from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
+import {
+  AngularFireStorage,
+  AngularFireUploadTask,
+} from '@angular/fire/compat/storage';
 import { v4 as uuid } from 'uuid';
 import { last, switchMap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -24,7 +27,7 @@ export class UploadComponent implements OnDestroy {
   persentage = 0;
   showPersentage = false;
   user: firebase.User | null = null;
-  task?: AngularFireUploadTask
+  task?: AngularFireUploadTask;
 
   title = new FormControl('', {
     validators: [Validators.required, Validators.minLength(3)],
@@ -39,21 +42,20 @@ export class UploadComponent implements OnDestroy {
     private storage: AngularFireStorage,
     private auth: AngularFireAuth,
     private clipService: ClipService,
-    private router:Router
+    private router: Router
   ) {
     auth.user.subscribe((user) => (this.user = user));
   }
 
   ngOnDestroy(): void {
-    this.task?.cancel()
+    this.task?.cancel();
   }
 
   storeFile(event: Event) {
-
     this.isDragover = true;
-    this.file = (event as DragEvent).dataTransfer ? 
-    (event as DragEvent).dataTransfer?.files.item(0) ?? null :
-    (event.target as HTMLInputElement).files?.item(0) ?? null
+    this.file = (event as DragEvent).dataTransfer
+      ? (event as DragEvent).dataTransfer?.files.item(0) ?? null
+      : (event.target as HTMLInputElement).files?.item(0) ?? null;
 
     console.log(this.file);
 
@@ -66,7 +68,7 @@ export class UploadComponent implements OnDestroy {
   }
 
   uploadFile() {
-    this.uploadForm.disable()
+    this.uploadForm.disable();
     this.showAlert = true;
     this.alertMsg = 'Your clip is uploaded successfully';
     this.alertColor = 'blue';
@@ -95,23 +97,20 @@ export class UploadComponent implements OnDestroy {
             fileName: `${clipFileName}.mp4`,
             title: this.title.value,
             url,
-            timestamp:firebase.firestore.FieldValue.serverTimestamp()
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           };
-          const clipDocRef =  await this.clipService.createClip(clip);
+          const clipDocRef = await this.clipService.createClip(clip);
 
           this.alertColor = 'green';
           this.alertMsg = 'Success! Your clip is now ready to share with  ';
           this.showPersentage = false;
 
           setTimeout(() => {
-             this.router.navigate([
-              'clip', clipDocRef.id
-             ])
-          },1000)
-        
+            this.router.navigate(['clip', clipDocRef.id]);
+          }, 1000);
         },
         error: (error) => {
-          this.uploadForm.enable()
+          this.uploadForm.enable();
           this.alertColor = 'red';
           this.alertMsg = 'Upload failed! Please try again later';
           this.showPersentage = false;
