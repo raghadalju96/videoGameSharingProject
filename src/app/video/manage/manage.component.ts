@@ -13,6 +13,7 @@ export class ManageComponent implements OnInit {
 
   videoOrder = '1'
   clips:IClip[]=[]
+  activeClip: IClip | null  = null
 
   constructor(private router:Router, private route:ActivatedRoute, private clipService: ClipService, private modal:ModalService) {
     clipService.getUserClips().subscribe(docs => {
@@ -48,6 +49,7 @@ export class ManageComponent implements OnInit {
 
   openModal(event:Event, clip:IClip){
       event.preventDefault()
+      this.activeClip = clip
       this.modal.toggleModal('editClip')
   }
 
