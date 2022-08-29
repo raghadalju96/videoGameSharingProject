@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {  ActivatedRoute, Params, Router } from '@angular/router';
 import IClip from 'src/app/models/clip.model';
 import { ClipService } from 'src/app/services/clip.service';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-manage',
@@ -13,7 +14,7 @@ export class ManageComponent implements OnInit {
   videoOrder = '1'
   clips:IClip[]=[]
 
-  constructor(private router:Router, private route:ActivatedRoute, private clipService: ClipService) {
+  constructor(private router:Router, private route:ActivatedRoute, private clipService: ClipService, private modal:ModalService) {
     clipService.getUserClips().subscribe(docs => {
       this.clips = []
 
@@ -43,6 +44,11 @@ export class ManageComponent implements OnInit {
         sort:value
       }
     })
+  }
+
+  openModal(event:Event, clip:IClip){
+      event.preventDefault()
+      this.modal.toggleModal('editClip')
   }
 
 }

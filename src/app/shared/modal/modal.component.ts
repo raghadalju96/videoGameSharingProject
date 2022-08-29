@@ -27,7 +27,6 @@ export class ModalComponent implements OnInit , OnDestroy{
   }
 
   closeModal() {
-    // this.auth.changes()  
     return this.modalService.toggleModal(this.modalID);
   }
 }
