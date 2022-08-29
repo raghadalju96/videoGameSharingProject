@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-
 interface Imodal {
   id: string;
   visable: boolean;
@@ -12,11 +11,6 @@ interface Imodal {
 export class ModalService {
   private modals: Imodal[] = [];
   constructor() {}
-
-  // private raghad ={
-  //  id:String,
-  // visables:Boolean
-  // }
 
   register(id: string) {
     this.modals.push({
