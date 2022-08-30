@@ -34,4 +34,11 @@ public clipsCollection : AngularFirestoreCollection<IClip>
       map(snapshot => ((snapshot as QuerySnapshot<IClip>).docs))
      )
    }
+
+   updateClip(id:string, title:string){
+    console.log(this.clipsCollection.doc(id));
+     return this.clipsCollection.doc(id).update(
+      {title}
+     )
+   }
 }
