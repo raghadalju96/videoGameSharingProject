@@ -12,6 +12,7 @@
   
   .video-js {
     position: initial;
+    background-color: transparent ;
   }
   
   .video-js .vjs-control-bar {
